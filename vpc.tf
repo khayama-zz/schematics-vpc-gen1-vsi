@@ -16,12 +16,19 @@ locals {
   ZONE     = "${var.region}-2"
 }
 
+data ibm_resource_group "group" {
+  name = "khayama-rg"
+}
+
 resource ibm_is_vpc "vpc" {
   name = "${local.BASENAME}-vpc"
+  resource_group = "${data.ibm_resource_group.group.id}"
+  tags = ["user:khayama"]
 }
 
 resource ibm_is_security_group "sg1" {
   name = "${local.BASENAME}-sg1"
+  resource_group = "${data.ibm_resource_group.group.id}"
   vpc  = "${ibm_is_vpc.vpc.id}"
 }
 
@@ -50,10 +57,6 @@ data ibm_is_image "ubuntu" {
 
 data ibm_is_ssh_key "ssh_key_id" {
   name = "${var.ssh_key}"
-}
-
-data ibm_resource_group "group" {
-  name = "khayama-rg"
 }
 
 resource ibm_is_instance "vsi1" {
