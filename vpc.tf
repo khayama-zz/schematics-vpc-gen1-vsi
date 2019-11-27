@@ -1,5 +1,5 @@
 variable "ssh_key" {
-  default = "khayama"
+  default = "636f6d70-0000-0001-0000-000000167b69"
 }
 
 provider "ibm" {
