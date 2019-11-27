@@ -2,14 +2,18 @@ variable "ssh_key" {
   default = "khayama"
 }
 
+variable "region" {
+  default = "au-syd"
+}
+
 provider "ibm" {
   generation = 1
-  region = "jp-tok"
+  region = "${var.region}"
 }
 
 locals {
   BASENAME = "khayama" 
-  ZONE     = "jp-tok-2"
+  ZONE     = "${var.region}-2"
 }
 
 resource ibm_is_vpc "vpc" {
