@@ -1,14 +1,15 @@
 variable "ssh_key" {
-  default = "636f6d70-0000-0001-0000-000000167b69"
+  default = "khayama"
 }
 
 provider "ibm" {
   generation = 1
+  region = "jp-tok"
 }
 
 locals {
   BASENAME = "khayama" 
-  ZONE     = "jp-tok-1"
+  ZONE     = "jp-tok-2"
 }
 
 resource ibm_is_vpc "vpc" {
