@@ -30,7 +30,6 @@ resource ibm_is_security_group "sg1" {
   name = "${local.BASENAME}-sg1"
   resource_group = "${data.ibm_resource_group.group.id}"
   vpc  = "${ibm_is_vpc.vpc.id}"
-  tags = ["user:khayama"]
 }
 
 # allow all incoming network traffic on port 22
@@ -68,7 +67,6 @@ resource ibm_is_instance "vsi1" {
   keys    = ["${data.ibm_is_ssh_key.ssh_key_id.id}"]
   image   = "${data.ibm_is_image.ubuntu.id}"
   profile = "cc1-2x4"
-  tags = ["user:khayama"]
 
   primary_network_interface = {
     subnet          = "${ibm_is_subnet.subnet1.id}"
